@@ -9,7 +9,7 @@ const students = [
   { name: "Hannah", age: 23, grade: "B", score: 80 },
 ];
 
-const filtered = students.filter(student => student.score >= 75);
+const filtered = students.filter(student => student.score <= 75);
 
 console.log("Step 1: Filtered Students");
 console.log(filtered);
