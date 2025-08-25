@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-10;
+  }
+  .headline {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight;
+  }
+  .eyebrow {
+    @apply uppercase tracking-widest text-sm text-silver/70;
+  }
+  .link {
+    @apply text-link hover:underline underline-offset-4;
+  }
+}
