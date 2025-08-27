@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debounce Search</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      width: 300px;
+      position: relative;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      position: absolute;
+      width: 100%;
+      background: #fff;
+    }
+    li {
+      padding: 8px;
+      cursor: pointer;
+    }
+    li:hover {
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <input type="text" id="search" placeholder="Search...">
+    <ul id="results"></ul>
+  </div>
+
+  <script>
+    const items = [
+      "Apple","Banana","Orange","Mango","Grapes","Pineapple","Watermelon","Cherry","Papaya","Strawberry",
+      "Kiwi","Guava","Peach","Plum","Apricot","Blueberry","Raspberry","Pear","Lychee","Coconut",
+      "Laptop","Mobile","Tablet","Headphones","Charger","Monitor","Keyboard","Mouse","Speaker","Smartwatch"
+    ];
+
+    const search = document.getElementById("search");
+    const results = document.getElementById("results");
+
+    function debounce(fn, delay) {
+      let timer;
+      return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+      }
+    }
+
+    function showResults(query) {
+      results.innerHTML = "";
+      if (!query) return;
+      const filtered = items.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+      if (filtered.length === 0) {
+        results.innerHTML = "<li>No results found</li>";
+      } else {
+        filtered.forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          results.appendChild(li);
+        });
+      }
+    }
+
+    search.addEventListener("input", debounce(() => {
+      showResults(search.value.trim());
+    }, 500));
+  </script>
+
+</body>
+</html>
