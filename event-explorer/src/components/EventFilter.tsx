@@ -1,20 +1,30 @@
 import React from "react";
 
-interface SearchBarProps {
-  searchTerm: string;
-  onSearchChange: (term: string) => void;
+interface EventFilterProps {
+  categories: string[];
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchChange }) => {
+const EventFilter: React.FC<EventFilterProps> = ({
+  categories,
+  selectedCategory,
+  onCategoryChange,
+}) => {
   return (
-    <input
-      type="text"
-      placeholder="Search events by title..."
-      className="border rounded p-2 w-full md:w-80 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      value={searchTerm}
-      onChange={(e) => onSearchChange(e.target.value)}
-    />
+    <select
+      className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      value={selectedCategory}
+      onChange={(e) => onCategoryChange(e.target.value)}
+    >
+      <option value="">All Categories</option>
+      {categories.map((cat) => (
+        <option key={cat} value={cat}>
+          {cat}
+        </option>
+      ))}
+    </select>
   );
 };
 
-export default SearchBar;
+export default EventFilter;

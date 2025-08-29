@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Event, fetchEventById, updateBookmark } from "../api/events";
+import {type Event, fetchEventById, updateBookmark } from "../api/events";
 
 const EventDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

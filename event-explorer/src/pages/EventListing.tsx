@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Event, fetchEvents, updateBookmark } from "../api/events"; // no .ts extension
+import { type Event, fetchEvents, updateBookmark } from "../api/events";
 import EventCard from "../components/EventCard";
 import EventFilter from "../components/EventFilter";
 import SearchBar from "../components/SearchBar";
@@ -40,9 +40,13 @@ const EventListing: React.FC = () => {
       setEvents((prev) =>
         prev.map((e) => (e.id === id ? { ...e, bookmarked } : e))
       );
-    } catch (error) {
+    } catch (error: unknown) {
+    if (error instanceof Error) {
+      alert(`Failed to update bookmark: ${error.message}`);
+    } else {
       alert("Failed to update bookmark");
     }
+  }
   };
 
   return (

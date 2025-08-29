@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Event, fetchEvents, updateBookmark } from "../api/events";
+import { type Event, fetchEvents, updateBookmark } from "../api/events";
 import EventCard from "../components/EventCard";
 
 const BookmarkedEvents: React.FC = () => {
@@ -19,9 +19,13 @@ const BookmarkedEvents: React.FC = () => {
       setBookmarkedEvents((prev) =>
         prev.filter((e) => e.id !== id)
       );
-    } catch (error) {
+    } catch (error: unknown) {
+    if (error instanceof Error) {
+      alert(`Failed to update bookmark: ${error.message}`);
+    } else {
       alert("Failed to update bookmark");
     }
+  }
   };
 
   if (bookmarkedEvents.length === 0)

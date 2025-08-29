@@ -1,5 +1,5 @@
 import React from "react";
-import { Event } from "../api/events";
+import type { Event } from "../api/events";
 import { Link } from "react-router-dom";
 
 interface EventCardProps {
