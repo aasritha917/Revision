@@ -1,34 +1,15 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--text);
-  transition: all 0.3s ease;
-}
-
 :root {
   --bg: #ffffff;
   --text: #000000;
+  --card-bg: #f5f5f5;
+  --accent-bg: #eafbe8; 
+  --pill-bg: #ffe6cc;    
 }
 
 body.dark {
   --bg: #121212;
   --text: #ffffff;
-}
-
-.container {
-  display: flex;
-  padding: 20px;
-}
-
-.left {
-  flex: 2;
-  padding: 10px;
-}
-
-.right {
-  flex: 1;
-  padding: 10px;
-  border-left: 1px solid #ccc;
+  --card-bg: #1e1e1e;
+  --accent-bg: #2e4d2e; 
+  --pill-bg: #804000;   
 }

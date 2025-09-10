@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SearchBar from "./components/SearchBar"
 import Suggestions from "./components/Suggestions"
 import WordDetails from "./components/WordDetails"
@@ -11,6 +11,14 @@ function App() {
   const [error, setError] = useState("")
   const [history, setHistory] = useState([])
   const [theme, setTheme] = useState("light")
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark")
+    } else {
+      document.body.classList.remove("dark")
+    }
+  }, [theme])
 
   const fetchWord = async (term) => {
     try {
@@ -30,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className={theme === "dark" ? "dark" : ""}>
+    <div>
       <ThemeToggle theme={theme} setTheme={setTheme} />
       <div className="container">
         <div className="left">
